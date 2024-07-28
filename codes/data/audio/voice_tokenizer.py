@@ -74,12 +74,12 @@ def build_text_file_from_priors(priors, output):
 
 
 def train():
-    with open('all_texts.txt', 'r', encoding='utf-8') as at:
+    with open(f'../../../dataset/transcriptions.txt', 'r', encoding='utf-8') as at:
         ttsd = at.readlines()
     #bcd = datasets.load_dataset('bookcorpus', cache_dir='Z:\\huggingface_datasets\\cache')['train']
 
     #allowed_characters_re = re.compile(r'^[0-9a-z!@#%_=:;"/, \-\$\^&\*\(\)\+\{\[\]\}\\\.\'\?—–ʼ]+$')
-    allowed_characters_re = re.compile(r'^[a-z!:;"/, \-\(\)\.\'\?ʼ]+$')
+    allowed_characters_re = re.compile(r'^[a-ząćęłńóśźż!:;"/, \-\(\)\.\'\?ʼ]+$')
     def preprocess_word(word, report=False):
         word = english_cleaners(word)
         word = remove_extraneous_punctuation(word)
@@ -103,13 +103,13 @@ def train():
     tokenizer.pre_tokenizer = Whitespace()
     tokenizer.train_from_iterator(batch_iterator(), trainer, length=len(ttsd))#+len(bcd))
 
-    print(tokenizer.decode(tokenizer.encode("i was traveling throughhadslfghds the woods in 1235375t137{{}}").ids))
+    print(tokenizer.decode(tokenizer.encode("podróżowałem tu i tam 112 lat temu{{}}").ids))
 
-    tokenizer.save('gpt_tts_tokenizer.json')
+    tokenizer.save('polish_tokenizer.json')
 
 
 def test():
-    tok = VoiceBpeTokenizer('gpt_tts_tokenizer.json')
+    tok = VoiceBpeTokenizer('polish_tokenizer.json')
     with open('all_texts.txt', 'r', encoding='utf-8') as at:
         ttsd = at.readlines()
         for line in ttsd:

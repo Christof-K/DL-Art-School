@@ -118,7 +118,7 @@ networks:
       #types: 1 # this is MISSING, but in my analysis 1 is equivalent to not having it.
       #only_alignment_head: False  # uv3/4
 
-path: 
+path:
   pretrain_model_gpt: '../experiments/autoregressive.pth' # CHANGEME: copy this from tortoise cache
   strict_load: true
   #resume_state: ../experiments/train_imgnet_vqvae_stage1/training_state/0.state   # <-- Set this to resume from a previous training state.
