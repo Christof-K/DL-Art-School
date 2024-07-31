@@ -29,7 +29,7 @@ def remove_extraneous_punctuation(word):
     word = extraneous.sub('', word)
     return word
 
-with open(f'../../../../../../dataset/transcriptions.txt', 'r', encoding='utf-8') as at:
+with open(f'/content/drive/MyDrive/transcriptions.txt', 'r', encoding='utf-8') as at:
     ttsd = at.readlines()
 
 allowed_characters_re = re.compile(r'^[a-ząćęłńóśźż!:;"/, \-\(\)\.\'\?ʼ]+$')
